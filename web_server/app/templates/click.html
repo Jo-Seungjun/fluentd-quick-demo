@@ -3,18 +3,27 @@
 
 </head>
 <body>
-    <h4>username: {{username}}</h4>
-    <button action=""></button>
+   <h4>username: {{username}}</h4>
+   <button onclick="sendclick('{{username}}')"></button>
 
-    <script type="text/javascript">
-        var httpRequest;
-        document.getElementById('click').addEventListener('click', ()=>{
-            var inputName = document.getElementById("inputName").value;
-            httpRequest = new XMLHttpRequest();
-            http
-        })
-        Request('/click');
-    </script>
+   <script type="text/javascript">
+       var httpRequest;
+       document.getElementById('click').addEventListener('click', ()=>{
+           var inputName = document.getElementById("inputName").value;
+           httpRequest = new XMLHttpRequest();
+           httpRequest.onreadystatechange = () => {
+               if (httpRequest.readyState == XMLHttpRequest.DONE){
+                   if (httpRequest.status == 200) {
+                       var result = httpRequest.response;
+                       // do something
+                   }
+               }
+           }
+           httpRequest.open('POST', '/click');
+           httpRequest.responseType
+       })
+       Request('/click');
+   </script>
 
 <!-- <script src="js/scripts.js"></script> -->
 </body>

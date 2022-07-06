@@ -1,28 +1,33 @@
 version: "3.9"
 
 networks:
- monitoring_net
+  monitoring:
 
 services:
- nginx:
-   build: ./nginx
-   ports:
-     - "8080:80"
-   volumes:
-     - .:/code
-   links:
-     - web_server
-  web_server:
-   build: ./web_server
-  fluentd:
-   build: ./fluentd
-   ports:
-     - 24224:24224
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/code
+    links:
+      - web_server
 
- influxdb:
-   image: influxdb:2.1.1
-   volumes:
-     - $(pwd)/influxdb2:/var/lib/influxdb2
-     - $(pwd)/config.yml:/etc/influxdb2/config.yml
-      
-  
+  web_server:
+    build: ./web_server
+
+  fluentd:
+    build: ./fluentd
+    ports:
+      - 24224:24224
+
+  influxdb2:
+    image: influxdb:2.1.1
+    volumes:
+      - influxdb2:/var/lib/influxdb2
+    environment:
+    ports:
+      - 8086:8086
+    
+volumes:
+  influxdb2:

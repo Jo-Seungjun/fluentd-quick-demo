@@ -8,8 +8,8 @@
 
    <script type="text/javascript">
        var httpRequest;
-       document.getElementById('click').addEventListener('click', ()=>{
-           var inputName = document.getElementById("inputName").value;
+       function sendclick(username) {
+           var inputName = username;
            httpRequest = new XMLHttpRequest();
            httpRequest.onreadystatechange = () => {
                if (httpRequest.readyState == XMLHttpRequest.DONE){
@@ -19,11 +19,15 @@
                    }
                }
            }
-           httpRequest.open('POST', '/click');
+           var postObj = {
+               username: inputName,
+               hold_time: 10
+           };
+           let post = JSON.stringify(postObj)
+           httpRequest.open('POST', '/click', true);
+           httpRequest.setRequestHeader('Content-type', 'application/json; charset=UTF-8')
+           httpRequest.send(post);
            httpRequest.responseType
-       })
-       Request('/click');
+       }
    </script>
-
-<!-- <script src="js/scripts.js"></script> -->
 </body>

@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <head>
-    <style type="text/css">
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
 
-        #button {
-            min-height: 100%; 
-        }
-    </style>
 </head>
 <body>
-    <div id="button">*눌러줘요~*</div>
+    <h4>username: {{username}}</h4>
+    <button id="button" width="100%" height="100%" position="fixed">*눌러줘요~*</button>
 
     <script type="text/javascript">
         var touchstart_time;
@@ -31,13 +23,12 @@
         }
         function handleEnd(){
             var now = new Date();
-            // alert(now-touchstart_time)
-            el.innerHTML = (now-touchstart_time).toString() + "ms<br>" + el.innerHTML;
+            alert(now-touchstart_time)
         }
         
 
         el.addEventListener('click', ()=>{
-            var inputName = {{username}};
+            var inputName = username;
             var httpRequest;
             httpRequest = new XMLHttpRequest();
             httpRequest.onreadystatechange = () => {

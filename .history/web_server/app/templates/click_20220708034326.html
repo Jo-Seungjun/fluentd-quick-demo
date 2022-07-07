@@ -32,12 +32,12 @@
         function handleEnd(){
             var now = new Date();
             // alert(now-touchstart_time)
-            el.innerHTML = (now-touchstart_time).toString() + "ms<br>" + el.innerHTML;
+            el.innerHTML += str(now-touchstart_time)
         }
         
 
         el.addEventListener('click', ()=>{
-            var inputName = {{username}};
+            var inputName = username;
             var httpRequest;
             httpRequest = new XMLHttpRequest();
             httpRequest.onreadystatechange = () => {

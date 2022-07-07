@@ -1,7 +1,0 @@
-FROM python:3.8.13
-
-RUN pip install flask uwsgi
-
-COPY ./app /app
-
-CMD [ "uwsgi", "/app/uwsgi.ini" ]

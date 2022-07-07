@@ -20,8 +20,8 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: localhost:24224
-        tag: nginx
+        fluentd-address: "localhost:24224"
+        tag: "nginx"
         
   web_server:
     build: ./web_server
@@ -29,13 +29,14 @@ services:
       - "8080:8080"
     networks:
       - fluentd_network
+    command: uwsgi /app/uwsgi.ini
     links:
       - fluentd
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: localhost:24224
-        tag: web_server.{{.Name}}
+        fluentd-address: "fluentd:24224"
+        tag: "web_server.{{.Name}}"
 
   fluentd:
     build: ./fluentd

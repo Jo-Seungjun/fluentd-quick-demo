@@ -32,7 +32,6 @@
         function handleEnd(){
             var now = new Date();
             var press_time = now - touchstart_time;
-            el.innerHTML = (press_time).toString() + "ms<br>" + el.innerHTML;
             
             var httpRequest;
             httpRequest = new XMLHttpRequest();
@@ -41,6 +40,7 @@
                     if (httpRequest.status == 200) {
                         var result = httpRequest.response;
                         if (result == "success") {
+                            el.innerHTML = (press_time).toString() + "ms<br>" + el.innerHTML;
                             // alert("성공");
                         } else {
                             // alert("실패");

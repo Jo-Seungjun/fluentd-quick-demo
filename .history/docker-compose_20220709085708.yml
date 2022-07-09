@@ -8,8 +8,7 @@ volumes:
   influxdb2:
 
 services:
-
-  nginx:
+  nginx_server:
     build: ./nginx
     ports:
       - "80:80"

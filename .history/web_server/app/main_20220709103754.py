@@ -6,7 +6,7 @@ from flask import Blueprint
 from flask import render_template
 
 logging.basicConfig(
-    format='[%(asctime)s] %(name)s %(levelname)s %(message)s',
+    format='%(asctime)s %(name)s %(levelname)s %(message)s',
     stream=sys.stdout,
     level=logging.DEBUG,
     )

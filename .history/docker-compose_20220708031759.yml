@@ -8,7 +8,6 @@ volumes:
   influxdb2:
 
 services:
-
   nginx:
     build: ./nginx
     ports:
@@ -23,7 +22,6 @@ services:
       options:
         fluentd-address: localhost:24224
         tag: nginx
-    restart: unless-stopped
         
   web_server:
     build: ./web_server
@@ -38,7 +36,6 @@ services:
       options:
         fluentd-address: localhost:24224
         tag: web_server.{{.Name}}
-    restart: unless-stopped
 
   fluentd:
     build: ./fluentd
@@ -49,7 +46,6 @@ services:
       - influx_network
     links:
       - influxdb2
-    restart: unless-stopped
 
   influxdb2:
     image: influxdb:2.3

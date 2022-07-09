@@ -6,11 +6,10 @@ from flask import Blueprint
 from flask import render_template
 
 logging.basicConfig(
-    format='[%(asctime)s] %(name)s %(levelname)s %(message)s',
+    format='%(asctime)s %(name)s %(levelname)s %(message)s',
     stream=sys.stdout,
     level=logging.DEBUG,
     )
-logging.getLogger('werkzeug').setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 
 bp = Blueprint('main', __name__)
@@ -19,7 +18,7 @@ bp = Blueprint('main', __name__)
 def main():
     if request.method == 'POST':
         username = request.form['username']
-        # logger.info(f'new user: {username}')
+        logger.info(f'new user: {username}')
         return render_template('click.html', username = username)
     return render_template('main.html')
 

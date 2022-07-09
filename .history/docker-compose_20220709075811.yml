@@ -8,7 +8,6 @@ volumes:
   influxdb2:
 
 services:
-
   nginx:
     build: ./nginx
     ports:
@@ -49,7 +48,6 @@ services:
       - influx_network
     links:
       - influxdb2
-    restart: unless-stopped
 
   influxdb2:
     image: influxdb:2.3
